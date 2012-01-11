@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, LocLoggerActivity!</string>
+    <string name="app_name">LocLogger</string>
+    <string name="title_settings">Settings</string>
+    <string name="title_sound">Notification Sound</string>
+    <string name="summary_on_sound">Notification Sounds On</string>
+    <string name="summary_off_sound">Notification Sound Off</string>
+    <string name="title_sound_select">Select Sound</string>
+    <string name="dialog_title_directory">New Log Directory</string>
+    <string name="dialog_message_directory">Example: /sdcard/your/directory/to/your/</string>
+
+</resources>
