@@ -59,9 +59,13 @@ public class LoggerService extends Service {
 
 		    public void onProviderDisabled(String provider) {}
 		};	
+		// Needs fixing.  Current method: Get location ASAP, return location from
+		// 15 minutes ago.  Reviewing possible solutions.
 		locationManager.requestSingleUpdate(locationManager.GPS_PROVIDER, locationListener, looper);
 		Location location = locationManager.getLastKnownLocation(locationManager.GPS_PROVIDER);
 		time.setTime(System.currentTimeMillis());
+		// TODO: Change this from lat, long to reverse geolocate to grab the
+		// address
 		locLog += location.getLatitude() + ", " + location.getLongitude() + " (" + time.toString() + ")\n";
  		File directory = new File("/sdcard/creatine/");
  		if(!directory.exists()) {
@@ -70,16 +74,15 @@ public class LoggerService extends Service {
  		File outputFile = new File(directory, "locationLog.txt");
 		try {
 			BufferedWriter bw = new BufferedWriter(new FileWriter(outputFile, true));
-			if(bw != null) {
-				bw.write(locLog);
-				bw.newLine();
-				bw.flush();
-			}
+			bw.write(locLog);
+			bw.newLine();
+			bw.flush();
+			Toast.makeText(this, "Location Logged", Toast.LENGTH_SHORT).show();
 		}
 		catch (IOException e){
 			Toast.makeText(this, "Directory Not Valid!", Toast.LENGTH_LONG).show();
 		}
-		Toast.makeText(this, "Location Logged ("+time.toString()+")", Toast.LENGTH_SHORT).show();
+		// Sound notification.
 		if(LogSettings.getNotificationEnabled(this)) {
 			Notification notification = new Notification();
 			NotificationManager mNM = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);

@@ -17,7 +17,7 @@ public class LogSettings extends PreferenceActivity {
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.settings);
 	}
-	
+	// Returns whether or not to use the sound
 	public static boolean getNotificationEnabled(Context context) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         boolean notificationsEnabled =
